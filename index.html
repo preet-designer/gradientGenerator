@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Generator</title>
+    <script src="gradientGenerator.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .wrapper {
+            height: 100vh;
+            width: 100vw;
+            background-color: mediumslateblue;
+            display: flex;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 25vw;
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .gradient-Box {
+            width: calc(100vw - 25vw);
+            height: 100vh;
+            background: linear-gradient(to bottom, #d507b9, #29d507);
+            /* opacity: .4; */
+        }
+
+        .sidebar h1 {
+            font-size: 2vw;
+        }
+
+        .sidebar .options {
+            margin-top: 40px;
+        }
+
+        .options .selectBox p {
+            font-size: 1.3vw;
+            margin-bottom: 15px;
+        }
+
+        .options .selectBox .select {
+            border: 1px solid #272727;
+            padding: 10px 5px;
+            background-color: #fff;
+        }
+
+        .options .selectBox .select select {
+            border: none;
+            outline: none;
+            width: 100%;
+            height: 40px;
+            font-size: 1.1vw;
+            border-radius: 5px;
+            color: #272727;
+            background-color: transparent;
+        }
+
+        .options .selectBox select option {
+            margin-left: 10px;
+        }
+
+        .options .inputBox {
+            margin-top: 40px;
+        }
+
+        .options .inputBox p {
+            margin-bottom: 10px;
+            font-size: 1.3vw;
+        }
+
+        .options .inputBox {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+        }
+
+        .options .inputBox .inputs {
+            width: 100%;
+            display: flex;
+        }
+
+        .options .inputBox .inputs input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            height: 100px;
+        }
+
+        .options textarea {
+            width: 100%;
+            resize: none;
+            font-size: .85vw;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .buttonBox {
+            margin-top: 40px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .buttonBox button {
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 10px;
+            font-size: 1vw;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .buttonBox .refresh {
+            background-color: cadetblue;
+        }
+
+        .buttonBox .copy {
+            background-color: mediumslateblue;
+        }
+
+        /* responsive css start here */
+        @media (max-width: 1100px) and (min-width: 200px) {
+            .wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: 400px;
+            }
+
+            .gradient-Box {
+                width: 100vw;
+                height: 100vh;
+                background: linear-gradient(to bottom, #d507b9, #29d507);
+            }
+
+            .sidebar h1 {
+                font-size: 3vh;
+            }
+
+            .sidebar .options {
+                margin-top: 20px;
+            }
+
+            .options .selectBox p {
+                font-size: 2vh;
+                margin-bottom: 5px;
+            }
+
+            .options .selectBox .select {
+                padding: 2px;
+            }
+
+            .options .selectBox .select select {
+
+                height: 30px;
+                font-size: 1.8vh;
+            }
+
+            .options .inputBox {
+                margin-top: 15px;
+            }
+
+            .options .inputBox p {
+                margin-bottom: 5px;
+                font-size: 2vh;
+            }
+
+            .options .inputBox {
+                margin-bottom: 15px;
+            }
+
+
+            .options .inputBox .inputs input {
+                height: 50px;
+            }
+
+            .options textarea {
+                font-size: 1.8vh;
+                line-height: 1.5;
+            }
+
+            .buttonBox {
+                margin-top: 15px;
+                gap: 15px;
+            }
+
+            .buttonBox button {
+                padding: 10px;
+                font-size: 2vh;
+
+            }
+
+            .buttonBox .refresh {
+                background-color: cadetblue;
+            }
+
+            .buttonBox .copy {
+                background-color: mediumslateblue;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrapper">
+        <aside class="sidebar">
+            <h1>Gradient Generator</h1>
+            <div class="options">
+                <div class="selectBox">
+                    <p>Direction</p>
+                    <div class="select">
+                        <select>
+                            <option value="to top">Top</option>
+                            <option value="to right top">Right Top</option>
+                            <option value="to right">Right</option>
+                            <option value="to right bottom">Right Bottom</option>
+                            <option value="to bottom">Bottom</option>
+                            <option value="to left top">Left Top</option>
+                            <option value="to left">Left</option>
+                            <option value="to left bottom" selected>Left Bottom</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="inputBox">
+                    <p>Select Colour</p>
+                    <div class="inputs">
+                        <input type="color" value="#2def06">
+                        <input type="color" value="#d507b9">
+                    </div>
+
+                </div>
+
+                <textarea class="text" disabled>background: linear-gradient(to bottom, #d507b9, #29d507);</textarea>
+            </div>
+            <div class="buttonBox">
+                <button class="refresh">Refresh Colors</button>
+                <button class="copy">Copy Code</button>
+            </div>
+        </aside>
+        <section class="gradient-Box"></section>
+    </main>
+</body>
+
+</html>
