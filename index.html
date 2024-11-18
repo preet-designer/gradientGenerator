@@ -5,219 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gradient Generator</title>
+    <link rel="stylesheet" href="gradient.css">
     <script src="gradientGenerator.js" defer></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
 
-        html,
-        body {
-            height: 100%;
-            width: 100%;
-        }
-
-        .wrapper {
-            height: 100vh;
-            width: 100vw;
-            background-color: mediumslateblue;
-            display: flex;
-        }
-
-        .sidebar {
-            height: 100vh;
-            width: 25vw;
-            background-color: #fff;
-            padding: 20px;
-        }
-
-        .gradient-Box {
-            width: calc(100vw - 25vw);
-            height: 100vh;
-            background: linear-gradient(to bottom, #d507b9, #29d507);
-            /* opacity: .4; */
-        }
-
-        .sidebar h1 {
-            font-size: 2vw;
-        }
-
-        .sidebar .options {
-            margin-top: 40px;
-        }
-
-        .options .selectBox p {
-            font-size: 1.3vw;
-            margin-bottom: 15px;
-        }
-
-        .options .selectBox .select {
-            border: 1px solid #272727;
-            padding: 10px 5px;
-            background-color: #fff;
-        }
-
-        .options .selectBox .select select {
-            border: none;
-            outline: none;
-            width: 100%;
-            height: 40px;
-            font-size: 1.1vw;
-            border-radius: 5px;
-            color: #272727;
-            background-color: transparent;
-        }
-
-        .options .selectBox select option {
-            margin-left: 10px;
-        }
-
-        .options .inputBox {
-            margin-top: 40px;
-        }
-
-        .options .inputBox p {
-            margin-bottom: 10px;
-            font-size: 1.3vw;
-        }
-
-        .options .inputBox {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 30px;
-        }
-
-        .options .inputBox .inputs {
-            width: 100%;
-            display: flex;
-        }
-
-        .options .inputBox .inputs input {
-            width: 100%;
-            border: none;
-            outline: none;
-            background-color: transparent;
-            height: 100px;
-        }
-
-        .options textarea {
-            width: 100%;
-            resize: none;
-            font-size: .85vw;
-            border-radius: 5px;
-            padding: 5px;
-        }
-
-        .buttonBox {
-            margin-top: 40px;
-            display: flex;
-            gap: 5px;
-        }
-
-        .buttonBox button {
-            width: 100%;
-            border: none;
-            outline: none;
-            padding: 10px;
-            font-size: 1vw;
-            color: #fff;
-            font-weight: 600;
-        }
-
-        .buttonBox .refresh {
-            background-color: cadetblue;
-        }
-
-        .buttonBox .copy {
-            background-color: mediumslateblue;
-        }
-
-        /* responsive css start here */
-        @media (max-width: 1100px) and (min-width: 200px) {
-            .wrapper {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-                height: 400px;
-            }
-
-            .gradient-Box {
-                width: 100vw;
-                height: 100vh;
-                background: linear-gradient(to bottom, #d507b9, #29d507);
-            }
-
-            .sidebar h1 {
-                font-size: 3vh;
-            }
-
-            .sidebar .options {
-                margin-top: 20px;
-            }
-
-            .options .selectBox p {
-                font-size: 2vh;
-                margin-bottom: 5px;
-            }
-
-            .options .selectBox .select {
-                padding: 2px;
-            }
-
-            .options .selectBox .select select {
-
-                height: 30px;
-                font-size: 1.8vh;
-            }
-
-            .options .inputBox {
-                margin-top: 15px;
-            }
-
-            .options .inputBox p {
-                margin-bottom: 5px;
-                font-size: 2vh;
-            }
-
-            .options .inputBox {
-                margin-bottom: 15px;
-            }
-
-
-            .options .inputBox .inputs input {
-                height: 50px;
-            }
-
-            .options textarea {
-                font-size: 1.8vh;
-                line-height: 1.5;
-            }
-
-            .buttonBox {
-                margin-top: 15px;
-                gap: 15px;
-            }
-
-            .buttonBox button {
-                padding: 10px;
-                font-size: 2vh;
-
-            }
-
-            .buttonBox .refresh {
-                background-color: cadetblue;
-            }
-
-            .buttonBox .copy {
-                background-color: mediumslateblue;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -225,8 +15,18 @@
         <aside class="sidebar">
             <h1>Gradient Generator</h1>
             <div class="options">
+                <div class="gradientSelectBox">
+                    <p>Select Gradient</p>
+                    <div class="gradientSelect">
+                        <select>
+                            <option value="linear-gradient">Linear Gradient</option>
+                            <option value="radial-gradient">Radial Gradient</option>
+                            <option value="conic-gradient">Conic Gradient</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="selectBox">
-                    <p>Direction</p>
+                    <p>Directions for Linear Gradient</p>
                     <div class="select">
                         <select>
                             <option value="to top">Top</option>
@@ -241,15 +41,49 @@
                     </div>
 
                 </div>
+                <div class="selectBox">
+                    <p>Directions for Radial Gradient</p>
+                    <div class="select">
+                        <select>
+                            <option value="center">Center</option>
+                            <option value="top left">Top Left</option>
+                            <option value="bottom right">Bottom Right</option>
+                            <option value="bottom left">Bottom Left</option>
+                            <option value="top right">Top Right</option>
+                        </select>
+
+                    </div>
+
+                </div>
+                <div class="selectBox">
+                    <p>Directions for Conic Gradient</p>
+                    <div class="select">
+                        <select>
+                            <option value="0deg">0 Degrees</option>
+                            <option value="45deg">45 Degrees</option>
+                            <option value="90deg">90 Degrees</option>
+                            <option value="135deg">135 Degrees</option>
+                            <option value="180deg">180 Degrees</option>
+                            <option value="225deg">225 Degrees</option>
+                            <option value="270deg">270 Degrees</option>
+                            <option value="315deg">315 Degrees</option>
+                            <option value="360deg">360 Degrees</option>
+                        </select>
+
+                    </div>
+
+                </div>
 
                 <div class="inputBox">
                     <p>Select Colour</p>
                     <div class="inputs">
                         <input type="color" value="#2def06">
                         <input type="color" value="#d507b9">
+                        <input type="color" value="#e3ca26">
                     </div>
 
                 </div>
+
 
                 <textarea class="text" disabled>background: linear-gradient(to bottom, #d507b9, #29d507);</textarea>
             </div>
